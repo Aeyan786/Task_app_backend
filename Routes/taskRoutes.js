@@ -1,5 +1,5 @@
 import express from "express"
-import { createTask, deleteTask, getAllTasks, getSingleTask, updateStatus, updateTask } from "../Controllers/taskController.js"
+import { createTask, deleteTask, getAllTasks, getSingleTask, test, updateStatus, updateTask } from "../Controllers/taskController.js"
 import { authentication } from "../middleware/middleware.js"
 
 const router = express.Router()
@@ -10,5 +10,6 @@ router.route("/delete/:id").delete(authentication,deleteTask)
 router.route("/getsingletask/:id").get(authentication,getSingleTask)
 router.route("/updatestatus/:id").post(authentication,updateStatus)
 router.route("/gettask").get(authentication,getAllTasks)
+router.route("/tasks").get(test)
 
 export default router

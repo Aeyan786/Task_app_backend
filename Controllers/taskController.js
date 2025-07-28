@@ -112,3 +112,8 @@ export const updateStatus = async (req, res) => {
     console.log(error);
   }
 };
+
+export const test = async (req,res)=>{
+  const tasks = await Task.find()
+  return res.json({message:"found", tasks})
+}
