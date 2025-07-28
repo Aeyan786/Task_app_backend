@@ -1,9 +1,12 @@
+import mongoose from "mongoose";
 import Task from "../Models/taskSchema.js";
 
 export const createTask = async (req, res) => {
   try {
     const { title, description, dueDate, status } = req.body;
     const userId = req.id;
+    console.log(userId);
+    
 
     if (!title || !description || !dueDate) {
       return res.status(400).json({ message: "Required fields are missing" });
@@ -65,9 +68,11 @@ export const deleteTask = async (req, res) => {
 
 export const getAllTasks = async (req, res) => {
   try {
-    const allTasks = await Task.find()
-      .populate("userId")
-      .sort({ createdAt: -1 });
+    const userId = req.id;
+    console.log(userId);
+
+    const allTasks = await Task.find({ userId: new mongoose.Types.ObjectId(userId) }) .populate("userId").sort({ createdAt: -1 });
+
     if (!allTasks) {
       return res.status(400).json({ message: "Tasks not found" });
     }
