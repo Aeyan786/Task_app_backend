@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 2000 ;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://task-app-frontend-zeta.vercel.app",
   credentials: true,
 };
 app.use(cors(corsOptions));
